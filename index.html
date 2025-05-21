@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amco Summit 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #FF6B6B;
+            --color-secondary: #4ECDC4;
+            --color-accent: #FFE66D;
+            --color-light: #F7FFF7;
+            --color-dark: #292F36;
+            --color-purple: #9B5DE5;
+            --color-pink: #F15BB5;
+            --color-blue: #00BBF9;
+            --color-green: #00F5D4;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-light);
+            color: var(--color-dark);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-purple), var(--color-pink));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--color-purple), var(--color-pink), var(--color-blue), var(--color-green));
+        }
+
+        .section-title {
+            color: var(--color-dark);
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-blue), var(--color-green));
+            border-radius: 5px;
+        }
+
+        /* Timeline mejorado */
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--color-purple), var(--color-blue));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .event {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .event-content {
+            padding: 25px;
+            background: white;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .event-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .event-content h3 {
+            margin-top: 0;
+            color: var(--color-purple);
+            font-size: 1.4rem;
+        }
+
+        .event-content p {
+            margin-bottom: 0;
+            color: var(--color-dark);
+        }
+
+        .event-time {
+            font-weight: bold;
+            color: var(--color-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-time::before {
+            content: '⏱️';
+            margin-right: 8px;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 30px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 30px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .event::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            right: -18px;
+            background-color: white;
+            border: 5px solid var(--color-pink);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 4px white;
+        }
+
+        /* Tips mejorados */
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--color-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .tip-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--color-purple);
+        }
+
+        .tip-card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--color-dark);
+            font-size: 1.3rem;
+        }
+
+        .tip-card p {
+            margin-bottom: 0;
+            color: #555;
+        }
+
+        /* Sección de alumnos mejorada */
+        .student-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .student-search-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .student-search-title {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--color-dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .student-search-title::before {
+            content: "🔍";
+            margin-right: 10px;
+        }
+
+        #studentSearch {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #studentSearch:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 3px rgba(0,187,249,0.2);
+        }
+
+        .student-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-top: 20px;
+            display: none;
+            border: 2px solid rgba(155,93,229,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .student-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-purple), var(--color-blue));
+        }
+
+        .student-info h3 {
+            margin-top: 0;
+            color: var(--color-purple);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .student-info h3::before {
+            content: "👤";
+            margin-right: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: var(--color-dark);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: var(--color-dark);
+            padding: 10px;
+            background: rgba(155,93,229,0.05);
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        .bracelet-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 8px;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .add-to-calendar {
+            background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,187,249,0.3);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .add-to-calendar::before {
+            content: "📅";
+            margin-right: 8px;
+        }
+
+        .add-to-calendar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,187,249,0.4);
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .no-results::before {
+            content: "😕";
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .event {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .event::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .student-section {
+                padding: 20px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Decoraciones */
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--color-pink);
+            top: -50px;
+            right: -50px;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 200px solid var(--color-blue);
+            bottom: -100px;
+            left: -50px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="shape circle"></div>
+        <div class="shape triangle"></div>
+        <h1 class="floating">Amco Summit 2025</h1>
+        <p class="pulse">¡La experiencia educativa más emocionante del año!</p>
+    </header>
+
+    <div class="container">
+        <section class="section" id="program">
+            <h2 class="section-title">Programa del Evento</h2>
+            <div class="timeline-container">
+                <div class="timeline">
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">6:00 - 8:00 AM</div>
+                            <h3>Registro e Ingreso</h3>
+                            <p>Auditorio Principal - No olvides llegar temprano con tu identificación</p>
+                        </div>
+                    </div>
+                    <div class="event right">
+                        <div class="event-content">
+                            <div class="event-time">8:00 AM</div>
+                            <h3>Show de Inauguración</h3>
+                            <p>Auditorio Principal - Espectáculo sorpresa para todos los participantes</p>
+                        </div>
+                    </div>
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">9:00 - 17:15</div>
+                            <h3>International Spelling Bee</h3>
+                            <p><strong>Cluster A:</strong> 9:00-11:45 AM | <strong>Cluster B:</strong> 12:00-14:30 PM | <strong>Cluster C:</strong> 14:45-17:15 PM</p>
+                            <p>Salones designados - Revisa tu cluster asignado</p>
+                        </div>
+                    </div>
+                    <div class="event right">
+                        <div class="event-content">
+                            <div class="event-time">9:00 AM - 5:10 PM</div>
+                            <h3>Debate League</h3>
+                            <p>8 clashes competitivos con receso de 13:20-13:35</p>
+                            <p>Salón de Debates - Lleva tus notas preparadas</p>
+                        </div>
+                    </div>
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">9:30 AM - 4:10 PM</div>
+                            <h3>AMCO Robot Challenge</h3>
+                            <p>3 rondas de competencia con receso de 13:35-14:05</p>
+                            <p>Área de Tecnología - Verifica tu equipo antes</p>
+                        </div>
+                    </div>
+                    <div class="event right">
+                        <div class="event-content">
+                            <div class="event-time">5:45 PM</div>
+                            <h3>Show de Clausura</h3>
+                            <p>Auditorio Principal - Entrega de premios y foto oficial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="tips">
+            <h2 class="section-title">Consejos para Triunfar</h2>
+            <div class="tips-container">
+                <div class="tip-card">
+                    <div class="tip-icon">💤</div>
+                    <h3>Descanso Óptimo</h3>
+                    <p>Dormir 8 horas mejora la memoria y concentración. Establece una rutina relajante antes de dormir.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🍎</div>
+                    <h3>Alimentación Inteligente</h3>
+                    <p>Desayuno con proteínas (huevo, yogur), frutas y granos integrales. Evita azúcares que causan fatiga.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🧠</div>
+                    <h3>Mentalidad Ganadora</h3>
+                    <p>Visualiza el éxito, respira profundamente (4-7-8) y recuerda: ¡estás preparado!</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📋</div>
+                    <h3>Checklist Esencial</h3>
+                    <p>Identificación, pulsera, materiales de competencia, agua, snacks saludables y ropa cómoda.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⏰</div>
+                    <h3>Plan de Tiempo</h3>
+                    <p>Llega 45 mins antes. Ubica baños, áreas de descanso y tu salón de competencia al llegar.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🌟</div>
+                    <h3>Disfruta la Experiencia</h3>
+                    <p>Conoce nuevos amigos, aprende de otros participantes y celebra cada logro.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section student-section" id="students">
+            <h2 class="section-title">Información del Participante</h2>
+            
+            <div class="student-search-container">
+                <h3 class="student-search-title">Busca a tu hijo/a</h3>
+                <input type="text" id="studentSearch" placeholder="Escribe el nombre completo del participante..." onkeyup="searchStudent()">
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Ejemplo: <em>Montserrat Becerril Luna</em></p>
+            </div>
+            
+            <div class="no-results" id="noResults">
+                No encontramos participantes con ese nombre. Verifica la ortografía o busca por apellido.
+            </div>
+            
+            <div class="student-info" id="studentInfo">
+                <h3 id="studentName"></h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">COMPETENCIA</span>
+                        <div class="info-value" id="studentCompetition"></div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">NIVEL/GRADO</span>
+                        <div class="info-value" id="studentGrade"></div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">HORARIO</span>
+                        <div class="info-value" id="studentSchedule"></div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">PULSERA</span>
+                        <div class="info-value">
+                            <span class="bracelet-color" id="braceletColor"></span>
+                            <span id="studentBracelet"></span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">UBICACIÓN</span>
+                        <div class="info-value" id="studentLocation"></div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">RECOMENDACIONES</span>
+                        <div class="info-value" id="studentRecommendations"></div>
+                    </div>
+                </div>
+                
+                <button class="add-to-calendar">Añadir recordatorio</button>
+                
+                <div style="margin-top: 30px; background: rgba(155,93,229,0.05); padding: 15px; border-radius: 10px;">
+                    <h4 style="margin-top: 0; color: var(--color-purple);">📌 Importante:</h4>
+                    <p id="studentNotes" style="margin-bottom: 0;"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Datos mejorados de los estudiantes
+        const students = [
+            {
+                name: "Montserrat Becerril Luna",
+                competition: "Encuentro Happy",
+                grade: "Beginners (3-5 años)",
+                bracelet: "Rosa Neón",
+                colorCode: "#FF6EC7",
+                schedule: "9:00 am - Formación | 9:30 am - Inicio",
+                location: "Salón de Iniciación (Planta baja)",
+                recommendations: "Traer mochila con cambio de ropa",
+                notes: "Los padres pueden acompañar durante la actividad"
+            },
+            {
+                name: "Kelya Nicole Ruvalcaba",
+                competition: "Encuentro Happy",
+                grade: "Juniors (6-8 años)",
+                bracelet: "Rosa Neón",
+                colorCode: "#FF6EC7",
+                schedule: "12:00 pm - Formación | 12:30 pm - Inicio",
+                location: "Salón de Desarrollo (Primer piso)",
+                recommendations: "Traer lunch saludable",
+                notes: "Actividad incluye materiales didácticos"
+            },
+            {
+                name: "Angela Nvarro Barajas",
+                competition: "Spelling Bee",
+                grade: "1° Primaria - Cluster B",
+                bracelet: "Verde Neón",
+                colorCode: "#39FF14",
+                schedule: "11:30 am - Formación | 12:00 pm - Competencia",
+                location: "Aula B203 (Segundo piso)",
+                recommendations: "Repasar lista de palabras",
+                notes: "Tendrán 5 minutos de calentamiento previo"
+            },
+            {
+                name: "Valentina Torres Rivera",
+                competition: "Spelling Bee",
+                grade: "2° Primaria - Cluster A",
+                bracelet: "Aqua",
+                colorCode: "#00E5FF",
+                schedule: "9:00 am - Formación | 9:15 am - Competencia",
+                location: "Aula A101 (Primer piso)",
+                recommendations: "Llegar 15 minutos antes",
+                notes: "No se permiten diccionarios electrónicos"
+            },
+            {
+                name: "José Emiliano Rodríguez",
+                competition: "Spelling Bee",
+                grade: "3° Primaria - Cluster A",
+                bracelet: "Rojo Neón",
+                colorCode: "#FF3860",
+                schedule: "9:00 am - Formación | 9:15 am - Competencia",
+                location: "Aula A102 (Primer piso)",
+                recommendations: "Traer lápiz y borrador",
+                notes: "Rondas eliminatorias cada 30 minutos"
+            },
+            {
+                name: "Luis Carlos Mancilla Avila",
+                competition: "Spelling Bee",
+                grade: "4° Primaria - Cluster A",
+                bracelet: "Amarillo Oro",
+                colorCode: "#FFD166",
+                schedule: "9:00 am - Formación | 9:15 am - Competencia",
+                location: "Aula A103 (Primer piso)",
+                recommendations: "Practicar pronunciación",
+                notes: "Jueces certificados por AMCO International"
+            },
+            {
+                name: "Camila Julieta Nuñez Juárez",
+                competition: "Spelling Bee",
+                grade: "5° Primaria - Cluster A",
+                bracelet: "Azul",
+                colorCode: "#118AB2",
+                schedule: "9:00 am - Formación | 9:15 am - Competencia",
+                location: "Aula A104 (Primer piso)",
+                recommendations: "Repasar reglas de solicitud",
+                notes: "Premiación a las 17:30 en auditorio"
+            },
+            {
+                name: "Romina Elizabeth Aldana",
+                competition: "Spelling Bee",
+                grade: "6° Primaria - Cluster B",
+                bracelet: "Verde Kelly",
+                colorCode: "#06D6A0",
+                schedule: "11:30 am - Formación | 12:00 pm - Competencia",
+                location: "Aula B204 (Segundo piso)",
+                recommendations: "Traer botella de agua",
+                notes: "Duración aproximada: 2 horas 30 minutos"
+            }
+        ];
+
+        // Función mejorada para buscar estudiantes
+        function searchStudent() {
+            const input = document.getElementById('studentSearch').value.toLowerCase().trim();
+            const studentInfo = document.getElementById('studentInfo');
+            const noResults = document.getElementById('noResults');
+            const studentName = document.getElementById('studentName');
+            const studentCompetition = document.getElementById('studentCompetition');
+            const studentGrade = document.getElementById('studentGrade');
+            const studentSchedule = document.getElementById('studentSchedule');
+            const studentBracelet = document.getElementById('studentBracelet');
+            const braceletColor = document.getElementById('braceletColor');
+            const studentLocation = document.getElementById('studentLocation');
+            const studentRecommendations = document.getElementById('studentRecommendations');
+            const studentNotes = document.getElementById('studentNotes');
+
+            // Ocultar ambos paneles inicialmente
+            studentInfo.style.display = 'none';
+            noResults.style.display = 'none';
+
+            if (input.length < 3) {
+                return;
+            }
+
+            // Buscar coincidencias parciales en nombre o apellidos
+            const foundStudent = students.find(student => 
+                student.name.toLowerCase().includes(input) ||
+                student.name.toLowerCase().split(' ').some(part => part.startsWith(input))
+            );
+
+            if (foundStudent) {
+                // Mostrar información del estudiante
+                studentName.textContent = foundStudent.name;
+                studentCompetition.textContent = foundStudent.competition;
+                studentGrade.textContent = foundStudent.grade;
+                studentSchedule.textContent = foundStudent.schedule;
+                studentBracelet.textContent = foundStudent.bracelet;
+                braceletColor.style.backgroundColor = foundStudent.colorCode;
+                studentLocation.textContent = foundStudent.location;
+                studentRecommendations.textContent = foundStudent.recommendations;
+                studentNotes.textContent = foundStudent.notes;
+                
+                studentInfo.style.display = 'block';
+                noResults.style.display = 'none';
+            } else {
+                noResults.style.display = 'block';
+                studentInfo.style.display = 'none';
+            }
+        }
+
+        // Botón para añadir al calendario
+        document.querySelector('.add-to-calendar').addEventListener('click', function() {
+            const studentName = document.getElementById('studentName').textContent;
+            const schedule = document.getElementById('studentSchedule').textContent;
+            
+            if (studentName && schedule) {
+                alert(`Recordatorio creado para ${studentName}\nEvento: ${schedule.split(' - ')[0]}`);
+            } else {
+                alert('Por favor busca un estudiante primero');
+            }
+        });
+
+        // Efecto al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelector('header h1').style.opacity = 1;
+                document.querySelector('header p').style.opacity = 1;
+            }, 300);
+        });
+    </script>
+</body>
+</html>
