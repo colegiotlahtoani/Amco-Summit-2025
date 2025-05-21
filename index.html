@@ -36,6 +36,15 @@
             overflow: hidden;
         }
 
+        .event-date {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
         header::before {
             content: "";
             position: absolute;
@@ -282,6 +291,8 @@
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .student-search-container {
@@ -290,6 +301,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             margin-bottom: 30px;
+            text-align: center;
         }
 
         .student-search-title {
@@ -299,6 +311,7 @@
             color: var(--color-dark);
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
         .student-search-title::before {
@@ -308,12 +321,15 @@
 
         #studentSearch {
             width: 100%;
+            max-width: 500px;
             padding: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-size: 16px;
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
+            margin: 0 auto;
+            display: block;
         }
 
         #studentSearch:focus {
@@ -439,6 +455,15 @@
             margin-bottom: 15px;
         }
 
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--color-dark);
+            color: white;
+            margin-top: 50px;
+            font-size: 1rem;
+        }
+
         @media screen and (max-width: 768px) {
             header h1 {
                 font-size: 2.2rem;
@@ -446,6 +471,10 @@
 
             header p {
                 font-size: 1.1rem;
+            }
+
+            .event-date {
+                font-size: 1.8rem;
             }
 
             .timeline::after {
@@ -535,6 +564,7 @@
     <header>
         <div class="shape circle"></div>
         <div class="shape triangle"></div>
+        <div class="event-date">Sábado 24 de Mayo 2025</div>
         <h1 class="floating">Amco Summit 2025</h1>
         <p class="pulse">¡La experiencia educativa más emocionante del año!</p>
     </header>
@@ -634,8 +664,8 @@
             
             <div class="student-search-container">
                 <h3 class="student-search-title">Busca a tu hijo/a</h3>
-                <input type="text" id="studentSearch" placeholder="Escribe el nombre completo del participante..." onkeyup="searchStudent()">
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Ejemplo: <em>Montserrat Becerril Luna</em></p>
+                <input type="text" id="studentSearch" placeholder="Ejemplo: Santiago Morales Hernández..." onkeyup="searchStudent()">
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Escribe el nombre completo del participante</p>
             </div>
             
             <div class="no-results" id="noResults">
@@ -683,6 +713,10 @@
             </div>
         </section>
     </div>
+
+    <footer>
+        2025 Colegio Tlahtoani - Todos los derechos reservados
+    </footer>
 
     <script>
         // Datos mejorados de los estudiantes
@@ -777,9 +811,17 @@
             }
         ];
 
-        // Función mejorada para buscar estudiantes
+        // Función para normalizar texto (eliminar acentos y convertir a minúsculas)
+        function normalizeText(text) {
+            return text
+                .toLowerCase()
+                .normalize("NFD") // Separa caracteres y acentos (ej: "á" → "a´")
+                .replace(/[\u0300-\u036f]/g, ""); // Elimina los acentos
+        }
+
+        // Función mejorada para buscar estudiantes (insensible a acentos y mayúsculas)
         function searchStudent() {
-            const input = document.getElementById('studentSearch').value.toLowerCase().trim();
+            const input = normalizeText(document.getElementById('studentSearch').value.trim());
             const studentInfo = document.getElementById('studentInfo');
             const noResults = document.getElementById('noResults');
             const studentName = document.getElementById('studentName');
@@ -800,11 +842,12 @@
                 return;
             }
 
-            // Buscar coincidencias parciales en nombre o apellidos
-            const foundStudent = students.find(student => 
-                student.name.toLowerCase().includes(input) ||
-                student.name.toLowerCase().split(' ').some(part => part.startsWith(input))
-            );
+            // Buscar coincidencias (ahora insensible a acentos y mayúsculas)
+            const foundStudent = students.find(student => {
+                const normalizedStudentName = normalizeText(student.name);
+                return normalizedStudentName.includes(input) ||
+                       normalizedStudentName.split(' ').some(part => part.startsWith(input));
+            });
 
             if (foundStudent) {
                 // Mostrar información del estudiante
